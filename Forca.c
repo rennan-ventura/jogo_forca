@@ -36,6 +36,37 @@ void desenhaForca(){
     }
 }
 
+void adicionapalavra(){
+    char sim;
+    printf("Gostaria de adicionar uma palavra? (S/N)");
+    scanf(" %c", &sim);
+
+    if(sim == 'S'){
+
+        char novapalavra[20];
+        printf("Qual a nova palavra? ");
+        scanf("%s", novapalavra);
+
+        FILE* f = fopen("palavras.txt", "r+");
+        if(f == 0){
+            printf("Desculpe, banco de dados nao disponivel");
+            exit(1);
+        }
+
+        int qtd;
+        fscanf(f, "%d", &qtd);
+        qtd++;
+
+        fseek(f, 0, SEEK_SET);
+        fprintf(f, "%d", qtd);
+
+        fseek(f, 0, SEEK_END);
+        fprintf(f, "\n%s", novapalavra);
+        fclose(f);
+    }
+}
+
+
 void escolhePalavra(){
     //sprintf(palavrasecreta, "MELANCIA");
     FILE* f = fopen("palavras.txt", "r");
