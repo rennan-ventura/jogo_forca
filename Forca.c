@@ -40,6 +40,11 @@ void escolhePalavra(){
     //sprintf(palavrasecreta, "MELANCIA");
     FILE* f = fopen("palavras.txt", "r");
 
+    if(f == 0){
+        printf("Desculpe, banco de dados nao disponivel!!\n\n");
+        exit(1);
+    }
+
     int qtdpalavras;
     fscanf(f, "%d", &qtdpalavras);
 
@@ -49,8 +54,6 @@ void escolhePalavra(){
     for(int i = 0; i <= randomico; i++){
         fscanf(f, "%s", palavrasecreta);
     }
-
-
 
     fclose(f);
 }
